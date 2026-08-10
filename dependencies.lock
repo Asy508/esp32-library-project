@@ -1,0 +1,73 @@
+dependencies:
+  Asy508/esp32-lfs-storage:
+    component_hash: cb890faea53213f629f74b239fede4b2a2ed6152ae08d5c4be7ade10991134c3
+    dependencies:
+    - name: idf
+      version: '>=4.1.0'
+    - name: joltwallet/littlefs
+      version: '*'
+    source:
+      git: https://github.com/Asy508/esp32-lfs-storage.git
+      path: .
+      type: git
+    targets:
+    - esp32c5
+    version: 0ffcb6912cb1b8a98de354c30aa2efbbd0e6a77c
+  Asy508/esp32-nvs-storage:
+    component_hash: 653cf66502bddffee0751f7a5ea64145876ae4ba502efe16e20d152b7182b8a8
+    dependencies:
+    - name: espressif/cjson
+      version: ^1.7.19
+    source:
+      git: https://github.com/Asy508/esp32-nvs-storage.git
+      path: .
+      type: git
+    targets:
+    - esp32c5
+    version: a3983928ad43d7dc0f49fafcafaccfd4285805fb
+  Asy508/esp32-utilities:
+    component_hash: 3c31829b30698662a27d22323ddd9de45593710049e58e980052c86574ae9f8f
+    dependencies:
+    - name: idf
+      version: '>=4.1.0'
+    source:
+      git: https://github.com/Asy508/esp32-utilities.git
+      path: .
+      type: git
+    targets:
+    - esp32c5
+    version: 7f77eb00f23534db580d7b0d2121b0bc831a003f
+  espressif/cjson:
+    component_hash: e788323270d90738662d66fffa910bfe1fba019bba087f01557e70c40485b469
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.7.19~2
+  idf:
+    source:
+      type: idf
+    version: 6.0.0
+  joltwallet/littlefs:
+    component_hash: dcea25bcef2de023f089f5f01e8d8c46ad1b8ffef75861ad5ffb4098555839df
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.20.4
+direct_dependencies:
+- Asy508/esp32-lfs-storage
+- Asy508/esp32-nvs-storage
+- Asy508/esp32-utilities
+- espressif/cjson
+- idf
+- joltwallet/littlefs
+manifest_hash: ed1afac6fa48f7c8e6644528d641760d1d287f2a621beb961e9bbf8a9a87971c
+target: esp32c5
+version: 3.0.0
