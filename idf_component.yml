@@ -21,3 +21,7 @@ dependencies:
   #espressif/led_strip: '*'
   #joltwallet/littlefs: '*'
   #espressif/cjson: "^1.7.19"
+
+  Asy508/esp32-led-service:
+    git: "https://github.com/Asy508/esp32-led-service.git"
+    version: "v1.0.0"

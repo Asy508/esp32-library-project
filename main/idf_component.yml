@@ -1,0 +1,10 @@
+version: "1.0.0"
+
+dependencies:
+  ## Required IDF version
+  idf:
+    version: '>=6.0.0'
+  
+  Asy508/esp32-led-service:
+    git: "https://github.com/Asy508/esp32-led-service.git"
+    version: "v1.0.0"

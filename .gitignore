@@ -96,3 +96,6 @@ sdkconfig.old
 # Python
 __pycache__/
 *.pyc
+
+# Examples and documentation
+examples/
