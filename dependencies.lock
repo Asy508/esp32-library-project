@@ -59,6 +59,26 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 1.7.19~2
+  espressif/mqtt:
+    component_hash: ffdad5659706b4dc14bc63f8eb73ef765efa015bf7e9adf71c813d52a2dc9342
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.0.0
+  espressif/w5500:
+    component_hash: e6e47022a1f509d1d1197652a554aea84a8cd4d99161061e187ecf4b78a7f6ca
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=6.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.0.1
   idf:
     source:
       type: idf
@@ -79,8 +99,10 @@ direct_dependencies:
 - Asy508/esp32-nvs-storage
 - Asy508/esp32-utilities
 - espressif/cjson
+- espressif/mqtt
+- espressif/w5500
 - idf
 - joltwallet/littlefs
-manifest_hash: 0bc800d9d1b6f7631d9f1a50e1ee1fdc373b7a5a3b823c8ee2bffdf2b1d7e440
+manifest_hash: b52f54b27cdd240b05dd4b1e04077e8aa415a0e9b45589a9d64e95fd04c1b548
 target: esp32c5
 version: 3.0.0

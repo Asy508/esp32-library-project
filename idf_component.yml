@@ -1,5 +1,5 @@
 ## IDF Component Manager Manifest File
-version: "1.0.0"
+version: 1.0.0
 
 dependencies:
   ## Required IDF version
@@ -23,5 +23,5 @@ dependencies:
   #espressif/cjson: "^1.7.19"
 
   Asy508/esp32-led-service:
-    git: "https://github.com/Asy508/esp32-led-service.git"
-    version: "v1.0.0"
+    git: https://github.com/Asy508/esp32-led-service.git
+    version: v1.0.0
