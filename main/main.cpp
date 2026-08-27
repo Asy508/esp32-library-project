@@ -20,6 +20,8 @@
 #include "sse_service.h"
 #include "uart_service.h"
 #include "ota_service.h"
+#include "tcp_service.h"
+#include "button_service.h"
 
 #define UART_PORT UART_NUM_1
 #define TXD_PIN   GPIO_NUM_5
@@ -27,6 +29,7 @@
 
 const char *TAG = "Main";
 
+//-------------HTTPServer
 static esp_err_t rootHandler(httpd_req_t* req) {
     auto& server = HttpServer::getInstance();
 
@@ -64,6 +67,46 @@ static esp_err_t postHandler(httpd_req_t* req) {
     return ESP_OK;
 }
 
+//--------------TCP callback
+static void tcpReceive(const uint8_t* data,size_t length)
+{
+    printf("TCP RX: %.*s\n",(int)length,(const char*)data);
+}
+
+static void tcpConnection(bool connected)
+{
+    printf("TCP %s\n",connected ? "connected" : "disconnected");
+}
+
+//--------------BUTTON service
+void buttonHandler(uint8_t action)
+{
+    switch(action)
+    {
+        case 1:
+            ESP_LOGI("MAIN","Single click");
+            break;
+
+        case 2:
+            ESP_LOGI("MAIN","Double click");
+            break;
+
+        case 3:
+            ESP_LOGI("MAIN","Triple click");
+            break;
+
+        case 5:
+            ESP_LOGI("MAIN","OTA request");
+            break;
+
+        case 25:
+            ESP_LOGI("MAIN","Reset settings request");
+            break;
+    }
+}
+
+
+//--------------Main
 extern "C" void app_main(void)
 {
     //----------------------Storage Manager
@@ -219,6 +262,28 @@ extern "C" void app_main(void)
 
     ESP_LOGI(TAG, "Time synchronized");
 
+    //----------------------TCP service
+    auto& tcp = TCPService::getInstance();
+
+    tcp.init();
+
+    tcp.setReceiveCallback(tcpReceive);
+    tcp.setConnectionCallback(tcpConnection);
+
+    tcp.connect("23.27.200.27",3000);
+
+    tcp.send("929E0044\"ADM-CID\"0040R000000L00000#4567[#4567|140101001]_10:22:25,08-13-2026");
+    //929E0044"ADM-CID"0040R000000L00000#4567[#4567|140101001]_10:22:25,08-13-2026
+    uint8_t dataTCP[] = {0xAA,0x01,0x02,0xBB};
+    tcp.send(dataTCP,sizeof(dataTCP));
+
+    //----------------------Button Service
+    auto& button = ButtonService::getInstance();
+
+    button.setCallback(buttonHandler);
+
+    button.begin(GPIO_NUM_27,true);
+
     //----------------------LED Service
     auto& ledService = LEDService::getInstance();
     ledService.init();
@@ -324,5 +389,6 @@ extern "C" void app_main(void)
         ESP_LOGI(TAG, "Timestamp: %lld", (long long)timestamp);
 
         ESP_LOGI(TAG, "Timestamp ms: %lld", (long long)timestampMs);
+
     }
 }

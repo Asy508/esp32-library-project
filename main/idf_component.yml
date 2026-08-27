@@ -8,3 +8,7 @@ dependencies:
   Asy508/esp32-led-service:
     git: "https://github.com/Asy508/esp32-led-service.git"
     version: "v1.0.0"
+  
+  Asy508/esp32-gpio-service:
+    git: "https://github.com/Asy508/esp32-gpio-service.git"
+    version: "v1.0.0"

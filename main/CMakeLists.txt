@@ -18,4 +18,7 @@ idf_component_register(SRCS "main.cpp"
                     sse_service
                     uart_service
                     ota_service
+                    tcp_service
+                    gpio_service
+                    button_service
                     )
